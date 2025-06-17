@@ -30,7 +30,7 @@ final class AdageController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/adage/new', name: 'app_adage_new')]
+    #[Route('/adage/new', name: 'app_adage_new')]
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
         $user = $this->getUser();
