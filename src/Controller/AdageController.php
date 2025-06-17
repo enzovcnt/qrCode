@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin')]
+
 final class AdageController extends AbstractController
 {
     #[Route('/', name: 'app_adage')]
@@ -30,7 +30,7 @@ final class AdageController extends AbstractController
         ]);
     }
 
-    #[Route('/adage/new', name: 'app_adage_new')]
+    #[Route('/admin/adage/new', name: 'app_adage_new')]
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
         $user = $this->getUser();
@@ -52,7 +52,7 @@ final class AdageController extends AbstractController
 
     }
 
-    #[Route('/adage/{id}/edit', name: 'app_adage_edit')]
+    #[Route('/admin/adage/{id}/edit', name: 'app_adage_edit')]
     public function edit(Request $request, Adage $adage, EntityManagerInterface $manager): Response
     {
         $user = $this->getUser();
@@ -71,7 +71,7 @@ final class AdageController extends AbstractController
         ]);
     }
 
-    #[Route('/adage/{id}/delete', name: 'app_adage_delete')]
+    #[Route('/admin/adage/{id}/delete', name: 'app_adage_delete')]
     public function delete(Adage $adage, EntityManagerInterface $manager): Response
     {
         $manager->remove($adage);
