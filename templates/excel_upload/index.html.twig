@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Import Excel{% endblock %}
+
+{% block body %}
+    <h1 class="text-2xl font-bold mb-4">Importer un fichier Excel</h1>
+
+    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+    {{ form_row(form.excel) }}
+    <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded" type="submit">Importer</button>
+    {{ form_end(form) }}
+{% endblock %}
