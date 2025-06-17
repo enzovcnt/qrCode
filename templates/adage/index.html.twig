@@ -4,6 +4,27 @@
 
 {% block body %}
 
+    <table class="min-w-full border border-gray-300 divide-y divide-gray-200 shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-gray-100">
+        <tr>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Auteur</th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Dicton</th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Voir</th>
+        </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+        {% for adage in adages %}
+        <tr>
+            <td class="px-6 py-4 text-sm text-gray-800">{{ adage.author }}</td>
+            <td class="px-6 py-4 text-sm text-gray-800">{{ adage.content }}</td>
+            <td class="px-6 py-4 text-sm text-blue-600 hover:underline">
+                <a href="{{ path('app_adage_show', { id: adage.id }) }}">Voir</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_adage_new') }}" class="mt-6 inline-block text-blue-600 hover:underline">Créer</a>
 
 
 {% endblock %}
