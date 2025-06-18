@@ -24,10 +24,10 @@ class PdfController extends AbstractController
     public function generatePdf(Adage $adage, BuilderInterface $defaultBuilder,): PdfResponse
     {
 
-        $pdfUrl = $this->generateUrl('generate_pdf', ['id' => $adage->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
+        $adageUrl = $this->generateUrl('app_adage_show', ['id' => $adage->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $qrResult = $defaultBuilder->build(
-            data: $pdfUrl,
+            data: $adageUrl,
             size: 500,
             margin: 20
         );
