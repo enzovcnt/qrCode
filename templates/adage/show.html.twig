@@ -3,27 +3,17 @@
 {% block title %}Adage n°{{ adage.id }}{% endblock %}
 
 {% block body %}
-    <div class="max-w-2xl mx-auto mt-10">
-        <h1 class="text-2xl font-bold mb-6">Détail de l’adage</h1>
+    <div class="h-screen flex flex-col justify-center items-center text-center px-4">
+        <h1 class="text-6xl font-extrabold text-gray-800 mb-8 leading-tight">“{{ adage.content }}”</h1>
+        <p class="text-4xl text-gray-600 mb-12">— {{ adage.author }}</p>
 
-        <table class="min-w-full border border-gray-300 divide-y divide-gray-200 shadow-md rounded-lg overflow-hidden">
-            <thead class="bg-gray-100">
-            <tr>
-                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Auteur</th>
-                <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Dicton</th>
-            </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
-                <td class="px-6 py-4 text-sm text-gray-800">{{ adage.author }}</td>
-                <td class="px-6 py-4 text-sm text-gray-800">{{ adage.content }}</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <a href="{{ path('app_adage') }}" class="mt-6 inline-block text-blue-600 hover:underline">← Retour à la liste</a>
-        <a href="{{ path('app_adage_edit', {'id': adage.id}) }}" class="mt-6 inline-block text-blue-600 hover:underline">Editer</a>
-        <a href="{{ path('app_adage_delete', {'id': adage.id}) }}" class="mt-6 inline-block text-blue-600 hover:underline">Supprimer</a>
-        <a href="{{ path('generate_pdf', {'id': adage.id}) }}" class="mt-6 inline-block text-blue-600 hover:underline">Générer PDF</a>
+        {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+        <div class="flex flex-wrap justify-center gap-8 text-xl">
+            <a href="{{ path('app_adage') }}" class="text-blue-600 hover:underline">← Retour à la liste</a>
+            <a href="{{ path('app_adage_edit', {'id': adage.id}) }}" class="text-blue-600 hover:underline">✏️ Éditer</a>
+            <a href="{{ path('app_adage_delete', {'id': adage.id}) }}" class="text-blue-600 hover:underline">🗑️ Supprimer</a>
+            <a href="{{ path('generate_pdf', {'id': adage.id}) }}" class="text-blue-600 hover:underline">📄 Générer PDF</a>
+        </div>
+        {% endif %}
     </div>
 {% endblock %}

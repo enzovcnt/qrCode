@@ -24,8 +24,10 @@
         {% endfor %}
         </tbody>
     </table>
+    {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
     <a href="{{ path('app_adage_new') }}" class="mt-6 inline-block text-blue-600 hover:underline">Créer</a>
     <a href="{{ path('import_excel') }}" class="mt-6 inline-block text-blue-600 hover:underline">Importer</a>
+    {% endif %}
 
 
 {% endblock %}

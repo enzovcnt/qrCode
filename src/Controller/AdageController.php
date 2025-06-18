@@ -33,10 +33,10 @@ final class AdageController extends AbstractController
     #[Route('/adage/new', name: 'app_adage_new')]
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
-//        $user = $this->getUser();
-//        if (!$user || !in_array("ROLE_ADMIN", $user->getRoles())) {
-//            return $this->redirectToRoute('app_login');
-//        }
+        $user = $this->getUser();
+        if (!$user || !in_array("ROLE_ADMIN", $user->getRoles())) {
+            return $this->redirectToRoute('app_login');
+        }
         $adage = new Adage();
         $form = $this->createForm(AdageForm::class, $adage);
         $form->handleRequest($request);
@@ -74,6 +74,10 @@ final class AdageController extends AbstractController
     #[Route('/admin/adage/{id}/delete', name: 'app_adage_delete')]
     public function delete(Adage $adage, EntityManagerInterface $manager): Response
     {
+        $user = $this->getUser();
+        if (!$user || !in_array("ROLE_ADMIN", $user->getRoles())) {
+            return $this->redirectToRoute('app_login');
+        }
         $manager->remove($adage);
         $manager->flush();
         return $this->redirectToRoute('app_adage');
