@@ -1,0 +1,19 @@
+<nav class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="text-xl font-semibold text-gray-800">
+            <a href="{{ path('app_home') }}">Adage</a>
+        </div>
+        <div class="space-x-4">
+            {% if app.user %}
+                <span class="text-gray-700">{{ app.user.userIdentifier }}</span>
+                <a href="{{ path('app_logout') }}"
+                   class="text-red-600 hover:underline">Se déconnecter</a>
+            {% else %}
+                <a href="{{ path('app_login') }}"
+                   class="text-blue-600 hover:underline">Se connecter</a>
+                <a href="{{ path('app_register') }}"
+                   class="text-green-600 hover:underline">S'inscrire</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
